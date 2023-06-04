@@ -35,7 +35,7 @@ const Menu = ({ logout }) => {
     if (user) {
       user.getIdToken(true).then((idToken) => {
         axios
-          .get(`http://https://philjap-api.onrender.com/getProfile/${user.uid}`, {
+          .get(`https://philjap-api.onrender.com/getProfile/${user.uid}`, {
             headers: {
               Authorization: `Bearer ${idToken}`,
             },

@@ -62,7 +62,7 @@ const PanoramaUploader = () => {
 
       // Move axios request to an asynchronous function
       const uploadImage = async () => {
-        await axios.post('http://https://philjap-api.onrender.com/upload', formData);
+        await axios.post('https://philjap-api.onrender.com/upload', formData);
       }
 
       // Execute function

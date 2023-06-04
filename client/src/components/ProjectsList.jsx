@@ -14,7 +14,7 @@ const ProjectsList = ({ userId }) => {
     const fetchData = async () => {
       if (userId !== null) {
         try {
-          const response = await axios.get(`http://https://philjap-api.onrender.com/api/projects/${userId}`);
+          const response = await axios.get(`https://philjap-api.onrender.com/api/projects/${userId}`);
           setProjects(response.data);
           setIsLoading(false);
         } catch (error) {
