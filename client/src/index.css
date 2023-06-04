@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: rgba(15, 23, 42);
+}
+
+.cardComp {
+    position: relative;
+    left: calc(-50% + 50px); /* Adjust this value to get the right amount of overlap */
+    z-index: 1;
+  }
+  
+  .cardComp:hover {
+    z-index: 2; /* Ensures that the hovered card comes to the front */
+  }
+
+  .panorama {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%; /* Adjust as needed */
+  }
+  
+
+.inverted-icon {
+    filter: invert(1);
+}
+
+#panorama-container {
+    position: relative;
+    width: 1440px;
+    height: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    cursor: move;
+    /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+#panorama-container:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.card-component {
+    transition: transform 0.5s;
+  }
+  
+.card-component:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.bg-glass {
+    @apply bg-[rgba(255,255,255,0.1)] backdrop-blur-[10px];
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.562);
+}
+  
+.bg-glassNav {
+    @apply bg-[rgba(255,255,255,0.1)] backdrop-blur-[10px];
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
