@@ -20,7 +20,7 @@ const RegistrationForm = () => {
     }
     try {
       setRegistering(true); // Set registering to true to display the loading modal
-      await axios.post('http://localhost:3002/register', { email, password, firstName, lastName, bday, isAdmin });
+      await axios.post('http://https://philjap-api.onrender.com/register', { email, password, firstName, lastName, bday, isAdmin });
       alert("Registration successful!");
       window.location.href = '/';
     } catch (err) {

@@ -26,7 +26,7 @@ describe('ProjectsList', () => {
     });
     
     render(<ProjectsList userId='1234' />);
-    await waitFor(() => expect(axios.get).toHaveBeenCalledWith('http://localhost:3002/api/projects/1234'));
+    await waitFor(() => expect(axios.get).toHaveBeenCalledWith('http://https://philjap-api.onrender.com/api/projects/1234'));
 
     expect(screen.getByText('Project 1')).toBeInTheDocument();
     expect(screen.getByText('Description 1')).toBeInTheDocument();

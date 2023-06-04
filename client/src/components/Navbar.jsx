@@ -38,7 +38,7 @@ const Navbar = () => {
     if (user) { 
       user.getIdToken(true)
         .then((idToken) => {
-          axios.get('http://localhost:3002/user', {
+          axios.get('http://https://philjap-api.onrender.com/user', {
             headers: {
               Authorization: `Bearer ${idToken}`,
             },

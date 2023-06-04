@@ -47,7 +47,7 @@ describe('UploadComponent', () => {
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
       expect(axios.post).toHaveBeenCalledWith(
-        'http://localhost:3002/upload',
+        'http://https://philjap-api.onrender.com/upload',
         expect.any(FormData),
         {
           headers: {
