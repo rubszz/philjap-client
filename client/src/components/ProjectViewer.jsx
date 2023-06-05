@@ -6,6 +6,7 @@ import PanoramaViewer from './PanoramaViewer';
 import Navbar from './Navbar';
 import ClientNavbar from './ClientNavbar';
 import { firestore } from '../firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectViewer = () => {
   const { projectId } = useParams();
@@ -18,6 +19,7 @@ const ProjectViewer = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const imageContainerRef = useRef(null);
   const scrollStep = 400; // Number of pixels to scroll
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,15 +73,20 @@ const ProjectViewer = () => {
   const handleDeleteProject = async () => {
     try {
       // Delete the project document
-      const userRef = firestore.collection('projects').doc(userId);
-      const projectRef = userRef.collection('project').doc(projectId);
+      const projectRef = firestore.collection('projects').doc(userId).collection('project').doc(projectId);
       await projectRef.delete();
-
+      console.log(projectRef)
+      console.log(projectId);
+      console.log("Successfully Deleted the Project");
+      
       // Redirect to a different page or perform any necessary action
+      navigate("/dashboard-admin")
+      alert("Project Deleted Successfully!")
     } catch (error) {
       console.error('Error deleting project:', error);
     }
   };
+  
 
   // Check if userIdFromUrl exists before rendering the component
   if (!userId) {
@@ -119,8 +126,8 @@ const ProjectViewer = () => {
           ))}
         </div>
       </div>
-
-      {isAdmin && (
+      
+      {!isAdmin && (
         <button
           onClick={handleDeleteProject}
           className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
