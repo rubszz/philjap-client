@@ -113,7 +113,7 @@ const ProjectViewer = () => {
         </button>
 
         <div
-          className="z-10 flex flex-row justify-between overflow-y-hidden gap-20 scrollbar-thin"
+          className="z-10 flex flex-row justify-between overflow-y-hidden w-3/4 gap-60 scrollbar-thin"
           ref={imageContainerRef}
           style={{ scrollbarWidth: 'none' }}
         >
