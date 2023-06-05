@@ -75,8 +75,6 @@ const ProjectViewer = () => {
       // Delete the project document
       const projectRef = firestore.collection('projects').doc(userId).collection('project').doc(projectId);
       await projectRef.delete();
-      console.log(projectRef)
-      console.log(projectId);
       console.log("Successfully Deleted the Project");
       
       // Redirect to a different page or perform any necessary action
