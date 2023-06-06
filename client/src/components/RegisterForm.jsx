@@ -126,10 +126,6 @@ const RegistrationForm = () => {
           >
             {registering ? "Registering..." : "Register"}
           </button>
-          <span className="text-white">
-            Already have an Account?  
-            <a className="mx-2 font-medium hover:text-blue-500" href="/login">Login here</a>
-          </span>
         </div>
       </form>
     </div>
