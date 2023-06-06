@@ -19,6 +19,7 @@ const RegistrationForm = () => {
       return;
     }
     try {
+      setIsAdmin(false); // Always set user to not Admin - we have another route for that 
       setRegistering(true); // Set registering to true to display the loading modal
       await axios.post('https://philjap-api.onrender.com/register', { email, password, firstName, lastName, bday, isAdmin });
       alert("Registration successful!");
@@ -116,16 +117,6 @@ const RegistrationForm = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-        </div>
-        <div className="flex items-center mb-6">
-          <input
-            type="checkbox"
-            id="isAdmin"
-            name="isAdmin"
-            checked={isAdmin}
-            onChange={(e) => setIsAdmin(e.target.checked)}
-          />
-          <label className="px-2 text-white" htmlFor="isAdmin">Engineer Account</label>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
           <button

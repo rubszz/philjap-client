@@ -1,109 +1,148 @@
-import React from 'react';
+import React, { useState } from "react";
 import axios from 'axios';
-import { useState } from 'react';
 
-const RegisterForm = () => {
-  const [toggle, setToggle] = useState(false);
-  const [pass1, setPass1] = useState('');
-  const [pass2, setPass2] = useState('');
-  const [profileImage, setProfileImage] = useState(null);
+const RegistrationForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [bday, setBday] = useState(new Date().toISOString().slice(0,10));
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [registering, setRegistering] = useState(false);
 
-  const handleRegister = (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('profileImage', profileImage);
-
-    axios
-      .post(process.env.signup, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        window.location.href = '/login';
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const handleChange1 = (e) => {
-    setPass1(e.target.value);
-  };
-
-  const handleChange2 = (e) => {
-    setPass2(e.target.value);
-    if (pass1 === pass2) {
-      setToggle(true);
-      console.log('True');
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    try {
+      setRegistering(true); // Set registering to true to display the loading modal
+      await axios.post('https://philjap-api.onrender.com/register', { email, password, firstName, lastName, bday, isAdmin });
+      alert("Registration successful!");
+      window.location.href = '/';
+    } catch (err) {
+      console.log(err);
+      setError(err.message);
+    } finally {
+      setRegistering(false); // Set registering back to false to hide the loading modal
+      window.location.href = '/';
     }
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setProfileImage(file);
-  };
-
   return (
-    <div className="flex flex-col justify-center">
-      <form onSubmit={handleRegister} className="flex flex-col pt-20">
-        <input
-          className="p-3 m-3 rounded-full"
-          required
-          type="email"
-          id="email"
-          placeholder="Email"
-        />
-        <input
-          className="p-3 m-3 rounded-full"
-          value={pass1}
-          onChange={handleChange1}
-          required
-          type="password"
-          id="password1"
-          placeholder="Password"
-        />
-        <input
-          onChange={handleChange2}
-          value={pass2}
-          className="p-3 m-3 rounded-full"
-          required
-          type="password"
-          id="password2"
-          placeholder="Confirm Password"
-        />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          className="p-3 m-3 rounded-full"
-          required
-          id="profileImage"
-        />
-        <button
-          type="submit"
-          id="register"
-          disabled={!toggle}
-          className={`${
-            toggle
-              ? 'blur-none p-3 m-10 font-semibold bg-white rounded-full font-poppins'
-              : 'drop-shadow-2xl p-3 m-10 font-semibold bg-white rounded-full font-poppins'
-          } `}
-        >
-          REGISTER
-        </button>
-        <div className="text-white font-poppins">
-          <span>Already have an account?</span>
-          <a href="/" className="pl-2 font-semibold hover:text-blue-500">
-            Login
-          </a>
+    <div className="max-w-lg mx-auto">
+      <form onSubmit={handleRegister} className="px-8 pt-6 pb-8 mb-4 bg-transparent rounded shadow-md">
+        <h2 className="mb-6 text-2xl font-medium text-center text-white">Register</h2>
+        
+        <div className="mb-4">
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+            Email Address
+          </label>
+          <input
+            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded-full shadow appearance-none focus:outline-none focus:shadow-outline"
+            id="email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col sm:flex-row sm:gap-2">
+          <div className="mb-4 sm:w-1/2">
+            <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+              First Name
+            </label>
+            <input
+              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded-full shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="firstname"
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="mb-4 sm:w-1/2">
+            <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+              Last Name
+            </label>
+            <input
+              className="w-full px-3 py-2 leading-tight text-gray-700 border rounded-full shadow appearance-none focus:outline-none focus:shadow-outline"
+              id="lastname"
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="password">
+            Birthdate
+          </label>
+          <input
+            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded-full shadow appearance-none focus:outline-none focus:shadow-outline"
+            id="birthdate"
+            type="date"
+            placeholder="Birthdate"
+            value={bday}
+            onChange={(e) => setBday(e.target.value)}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded-full shadow appearance-none focus:outline-none focus:shadow-outline"
+            id="password"
+            type="password"
+            placeholder="**********"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="confirmPassword">
+            Confirm Password
+          </label>
+          <input
+            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded-full shadow appearance-none focus:outline-none focus:shadow-outline"
+            id="confirmPassword"
+            type="password"
+            placeholder="**********"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+        <div className="flex items-center mb-6">
+          <input
+            type="checkbox"
+            id="isAdmin"
+            name="isAdmin"
+            checked={isAdmin}
+            onChange={(e) => setIsAdmin(e.target.checked)}
+          />
+          <label className="px-2 text-white" htmlFor="isAdmin">Engineer Account</label>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <button
+            className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+            type="submit"
+            disabled={registering}
+          >
+            {registering ? "Registering..." : "Register"}
+          </button>
+          <span className="text-white">
+            Already have an Account?  
+            <a className="mx-2 font-medium hover:text-blue-500" href="/login">Login here</a>
+          </span>
         </div>
       </form>
     </div>
   );
 };
 
-export default RegisterForm;
+export default RegistrationForm;
