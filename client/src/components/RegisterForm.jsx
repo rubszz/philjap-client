@@ -9,7 +9,7 @@ const RegistrationForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bday, setBday] = useState(new Date().toISOString().slice(0,10));
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const [registering, setRegistering] = useState(false);
 
   const handleRegister = async (e) => {
