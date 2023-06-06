@@ -12,7 +12,7 @@ import ProjectViewer from './components/ProjectViewer';
 import ClientProjectView from './components/ClientProjectView';
 import ClientDashboardPage from './pages/ClientDashboardPage';
 import ProfileEdit from './pages/ProfileEdit';
-import RegisterEngineer from '../pages/RegisterEngineer'
+import RegisterEngineer from './pages/RegisterEngineer'
 
 import './index.css'
 
@@ -32,7 +32,7 @@ root.render(
         <Route path="/dashboard-user" element={<ProtectedRoute><ClientDashboardPage /></ProtectedRoute>} />
         <Route path="/upload" element={<ProtectedRoute><UploadPage /></ProtectedRoute>} />
         <Route path="/profile-edit" element={<ProtectedRoute><ProfileEdit /></ProtectedRoute>} />
-        <Route path="/add-engineer" element={<RegisterEngineer />}/>
+        <Route path="/add-engineer" element={<ProtectedRoute ><RegisterEngineer /></ProtectedRoute>}/>
         <Route path="/projects/:projectId" element={<ProjectViewer />} />
         <Route path="/profile/:userId" element={<ClientProjectView />} />
       </Routes>
