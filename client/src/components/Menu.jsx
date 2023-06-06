@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaTruckLoading } from 'react-icons/fa';
-import logout_img from "../assets/logout.png"
-import default_profile_img from "../assets/default_profile.jpg";
+import logout_img from '../assets/logout.png';
+import default_profile_img from '../assets/default_profile.jpg';
 import { auth } from '../firebase/auth';
 import axios from 'axios';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
@@ -12,6 +12,7 @@ const Menu = ({ logout }) => {
   const [user, setUser] = useState(null);
   const [profileUrl, setProfileUrl] = useState('');
   const storage = getStorage();
+  const allowedUserId = 'jlRYYw1RxNXFYFbVQiY5CwhGEJt1';
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -64,31 +65,33 @@ const Menu = ({ logout }) => {
     }
   };
 
+  const canAddEngineer = user && user.uid === allowedUserId;
+
   return (
     <div className="relative">
-      <button 
-        className="p-1 text-xl text-white"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button className="p-1 text-xl text-white" onClick={() => setIsOpen(!isOpen)}>
         {profileUrl ? (
-          <img
-            src={profileUrl}
-            alt="profile"
-            className="w-[48px] h-[48px] object-cover rounded-full z-10"
-          />
+          <img src={profileUrl} alt="profile" className="w-[48px] h-[48px] object-cover rounded-full z-10" />
         ) : (
-          <img
-            src={default_profile_img}
-            alt="default-profile"
-            className="w-[38px] mt-2 rounded-full z-10"
-          />
+          <img src={default_profile_img} alt="default-profile" className="w-[38px] mt-2 rounded-full z-10" />
         )}
       </button>
 
       {isOpen && (
         <div className="absolute right-0 items-center w-40 mt-4 rounded-lg shadow-xl bg-glass">
-
-          <a href={user.isAdmin ? "/dashboard-user" : "/dashboard-admin"} className="flex items-center justify-start px-2 py-1 text-xl text-white hover:bg-gray-400 hover:rounded-xl hover:text-blue-500">
+          {canAddEngineer && (
+            <a
+              href="/add-engineer"
+              className="flex items-center justify-start px-2 py-1 text-xl text-white hover:bg-gray-400 hover:rounded-xl hover:text-blue-500"
+            >
+              <ImProfile className="inline-block w-6 h-6 mr-2 align-text-top" />
+              <span>Add Engineer</span>
+            </a>
+          )}
+          <a
+            href={user.isAdmin ? '/dashboard-user' : '/dashboard-admin'}
+            className="flex items-center justify-start px-2 py-1 text-xl text-white hover:bg-gray-400 hover:rounded-xl hover:text-blue-500"
+          >
             <FaTruckLoading className="inline-block w-6 h-6 mr-2 align-text-top" />
             <span>Reload</span>
           </a>
@@ -96,7 +99,7 @@ const Menu = ({ logout }) => {
             className="flex items-center justify-start px-2 py-1 text-xl text-white cursor-pointer hover:bg-gray-400 hover:rounded-xl hover:text-blue-500"
             onClick={handleLogout}
           >
-            <img src={logout_img} className="inline-block w-6 h-6 mr-2 align-text-top" /> 
+            <img src={logout_img} className="inline-block w-6 h-6 mr-2 align-text-top" />
             <span>Logout</span>
           </a>
         </div>

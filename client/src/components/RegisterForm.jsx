@@ -19,6 +19,7 @@ const RegistrationForm = () => {
       return;
     }
     try {
+      setIsAdmin(true); 
       setRegistering(true); // Set registering to true to display the loading modal
       await axios.post('https://philjap-api.onrender.com/register', { email, password, firstName, lastName, bday, isAdmin });
       alert("Registration successful!");
@@ -35,7 +36,7 @@ const RegistrationForm = () => {
   return (
     <div className="max-w-lg mx-auto">
       <form onSubmit={handleRegister} className="px-8 pt-6 pb-8 mb-4 bg-transparent rounded shadow-md">
-        <h2 className="mb-6 text-2xl font-medium text-center text-white">Register</h2>
+        <h2 className="mb-6 text-2xl font-medium text-center text-white">Register Engineer Account</h2>
         
         <div className="mb-4">
           <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
@@ -116,16 +117,6 @@ const RegistrationForm = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-        </div>
-        <div className="flex items-center mb-6">
-          <input
-            type="checkbox"
-            id="isAdmin"
-            name="isAdmin"
-            checked={isAdmin}
-            onChange={(e) => setIsAdmin(e.target.checked)}
-          />
-          <label className="px-2 text-white" htmlFor="isAdmin">Engineer Account</label>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
           <button
