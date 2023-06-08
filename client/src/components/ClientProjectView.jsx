@@ -5,6 +5,7 @@ import axios from 'axios';
 import CardComponent from './CardComponent';
 import ClientNavbar from './ClientNavbar';
 import { firestore } from '../firebase/auth';
+import FloatingChatButton from './chat/FloatingChatButton';
 
 const ClientProjectView = () => {
   const { userId } = useParams();
@@ -99,6 +100,7 @@ const ClientProjectView = () => {
           />
         ))}
       </div>
+      <FloatingChatButton />
     </div>
   );
 };
