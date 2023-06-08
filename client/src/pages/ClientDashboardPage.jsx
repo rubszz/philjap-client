@@ -1,6 +1,7 @@
 import React from 'react'
 import ClientNavbar from '../components/ClientNavbar'
 import Explorer from '../components/Explorer'
+import FloatingChatButton from '../components/chat/FloatingChatButton'
 
 const ClientDashboardPage = () => {
   return (
@@ -10,6 +11,7 @@ const ClientDashboardPage = () => {
             <h1 className="text-4xl font-bold text-white ">Welcome to your dashboard!</h1>
             <Explorer />
         </div>
+        <FloatingChatButton />
     </div>
   )
 }

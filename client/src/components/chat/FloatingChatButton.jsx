@@ -32,7 +32,7 @@ const FloatingChatButton = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-10">
+    <div className="fixed bottom-4 right-4 z-50">
       {!isOpen && (
         <button
           className="bg-discordBlue text-white p-3 rounded-full shadow-lg"

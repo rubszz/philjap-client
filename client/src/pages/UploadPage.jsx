@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import UploadComponent from '../components/UploadComponent'
+import FloatingChatButton from '../components/chat/FloatingChatButton'
 
 
 const UploadPage = () => {
@@ -10,6 +11,7 @@ const UploadPage = () => {
         <div className="pt-[100px]">
             <UploadComponent />
         </div>
+        <FloatingChatButton />
     </div>
   )
 }

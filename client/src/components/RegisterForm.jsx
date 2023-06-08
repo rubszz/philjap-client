@@ -39,7 +39,7 @@ const RegistrationForm = () => {
         <h2 className="mb-6 text-2xl font-medium text-center text-white">Register Engineer Account</h2>
         
         <div className="mb-4">
-          <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+          <label className="block mb-2 font-bold text-white" htmlFor="email">
             Email Address
           </label>
           <input
@@ -53,7 +53,7 @@ const RegistrationForm = () => {
         </div>
         <div className="flex flex-col sm:flex-row sm:gap-2">
           <div className="mb-4 sm:w-1/2">
-            <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+            <label className="block mb-2 font-bold text-white" htmlFor="email">
               First Name
             </label>
             <input
@@ -66,7 +66,7 @@ const RegistrationForm = () => {
             />
           </div>
           <div className="mb-4 sm:w-1/2">
-            <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+            <label className="block mb-2 font-bold text-white" htmlFor="email">
               Last Name
             </label>
             <input
@@ -80,7 +80,7 @@ const RegistrationForm = () => {
           </div>
         </div>
         <div className="mb-4">
-          <label className="block mb-2 font-bold text-gray-700" htmlFor="password">
+          <label className="block mb-2 font-bold text-white" htmlFor="password">
             Birthdate
           </label>
           <input
@@ -93,7 +93,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 font-bold text-gray-700" htmlFor="password">
+          <label className="block mb-2 font-bold text-white" htmlFor="password">
             Password
           </label>
           <input
@@ -106,7 +106,7 @@ const RegistrationForm = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block mb-2 font-bold text-gray-700" htmlFor="confirmPassword">
+          <label className="block mb-2 font-bold text-white" htmlFor="confirmPassword">
             Confirm Password
           </label>
           <input
