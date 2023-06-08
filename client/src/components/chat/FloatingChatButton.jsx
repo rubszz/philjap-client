@@ -80,12 +80,20 @@ const FloatingChatButton = () => {
                 required
               ></textarea>
             </div>
-            <button
-              type="submit"
-              className="bg-discordBlue text-white py-2 px-4 rounded-full focus:outline-none"
-            >
-              Send
-            </button>
+            <div className='flex flex-row gap-4 justify-center'>
+              <button
+                type="submit"
+                className="bg-discordBlue text-white py-2 px-4 rounded-full focus:outline-none"
+              >
+                Send
+              </button>
+              <button
+                className="bg-discordBlue text-white py-2 px-4 rounded-full focus:outline-none"
+                onClick={() => setIsOpen(false)}
+              >
+                Close
+              </button>
+            </div>
           </form>
         </div>
       )}
