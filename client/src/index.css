@@ -69,3 +69,20 @@ body {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
+
+@layer utilities {
+  .bg-discordBlue {
+    --tw-bg-opacity: 1;
+    background-color: rgba(114, 137, 218, var(--tw-bg-opacity));
+  }
+
+  .bg-discordDark {
+    --tw-bg-opacity: 1;
+    background-color: rgba(54, 57, 63, var(--tw-bg-opacity));
+  }
+
+  .bg-discordInput {
+    --tw-bg-opacity: 1;
+    background-color: rgba(35, 39, 42, var(--tw-bg-opacity));
+  }
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar'
 import ProjectsList from '../components/ProjectsList';
 import { auth } from '../firebase/auth'; // make sure to import your initialized firebase auth object
+import FloatingChatButton from '../components/chat/FloatingChatButton';
 
 const AdminDashboard = () => {
   const [userId, setUserId] = useState(null);
@@ -23,9 +24,11 @@ const AdminDashboard = () => {
   return (
     <div className="pt-[120px] h-full w-full bg-cover bg-slate-900">
       <Navbar />
+      <FloatingChatButton />
       <div className="flex w-screen h-screen justify-evenly ">
         <ProjectsList userId={userId} />
       </div>
+      
     </div>
   )
 };

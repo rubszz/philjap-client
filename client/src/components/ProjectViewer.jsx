@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import ClientNavbar from './ClientNavbar';
 import { firestore } from '../firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import FloatingChatButton from './chat/FloatingChatButton';
 
 const ProjectViewer = () => {
   const { projectId } = useParams();
@@ -130,6 +131,7 @@ const ProjectViewer = () => {
           Delete Project
         </button>
       )}
+      <FloatingChatButton />
     </div>
   );
 };

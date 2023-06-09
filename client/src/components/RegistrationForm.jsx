@@ -117,16 +117,6 @@ const RegistrationForm = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <div className="flex items-center mb-6">
-          <input
-            type="checkbox"
-            id="isAdmin"
-            name="isAdmin"
-            checked={isAdmin}
-            onChange={(e) => setIsAdmin(e.target.checked)}
-          />
-          <label className="px-2 text-white" htmlFor="isAdmin">Engineer Account</label>
-        </div>
         <div className="flex flex-col items-center justify-center gap-2">
           <button
             className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"

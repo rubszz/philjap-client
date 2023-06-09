@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 
 import headmaster from "../assets/HeadMaster.png"
 import display from "../assets/image1.jpg"
+import FloatingChatButton from '../components/chat/FloatingChatButton'
 
 const RegisterPage = () => {
     
@@ -32,6 +33,7 @@ const RegisterPage = () => {
             className="flex flex-col items-center justify-center pr-[7%]">
 
             <RegistrationForm />
+            <FloatingChatButton />
         </motion.div>
         <motion.div 
             initial={{ x: 900 }}
