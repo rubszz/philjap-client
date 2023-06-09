@@ -75,7 +75,7 @@ const ProjectViewer = () => {
     }
   };
 
-  const handleDeleteProject = async () => {
+  const handleDeleteProject = async (userId, projectId) => {
     try {
       await axios.delete(`http://localhost:3002/api/delete/${userId}/${projectId}`);
       console.log("Successfully Deleted the Project");
@@ -169,7 +169,7 @@ const ProjectViewer = () => {
       
       {!isAdmin && (
         <button
-          onClick={() => handleDeleteProject()}
+          onClick={handleDeleteProject}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 m-4 rounded"
         >
           Delete Project
