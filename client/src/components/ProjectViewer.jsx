@@ -42,7 +42,7 @@ const ProjectViewer = () => {
 
         if (userIdFromUrl) {
           // Fetch the project images using the userId
-          const response = await axios.get(`http://localhost:3002/api/projects/images/${projectId}/${userIdFromUrl}`);
+          const response = await axios.get(`https://philjap-api.onrender.com/api/projects/images/${projectId}/${userIdFromUrl}`);
           setImages(response.data.images);
         }
         console.log(`Project ID:: ${projectId}`)
