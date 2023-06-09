@@ -37,7 +37,7 @@ const ProjectViewer = () => {
 
         if (userIdFromUrl) {
           // Fetch the project images using the userId
-          const response = await axios.get(`https://philjap-api.onrender.com/api/projects/images/${projectId}/${userIdFromUrl}`);
+          const response = await axios.get(`http://localhost:3002/api/projects/images/${projectId}/${userIdFromUrl}`);
           setImages(response.data.images);
         }
 
@@ -70,16 +70,13 @@ const ProjectViewer = () => {
     }
   };
 
-  const handleDeleteProject = async () => {
+  const handleDeleteProject = async (userId, projectId) => {
     try {
-      // Delete the project document
-      const projectRef = firestore.collection('projects').doc(userId).collection('project').doc(projectId);
-      await projectRef.delete();
+      await axios.delete(`http://localhost:3002/api/delete/${userId}/${projectId}`);
       console.log("Successfully Deleted the Project");
       
-      // Redirect to a different page or perform any necessary action
-      navigate("/dashboard-admin")
-      alert("Project Deleted Successfully!")
+      navigate("/dashboard-admin");
+      alert("Project Deleted Successfully!");
     } catch (error) {
       console.error('Error deleting project:', error);
     }
@@ -127,7 +124,7 @@ const ProjectViewer = () => {
       
       {!isAdmin && (
         <button
-          onClick={handleDeleteProject}
+          onClick={() => handleDeleteProject(userId, projectId)}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 m-4 rounded"
         >
           Delete Project
