@@ -77,7 +77,7 @@ const ProjectViewer = () => {
 
   const handleDeleteProject = async () => {
     try {
-      await axios.delete(`http://localhost:3002/api/delete/${userId}/${projectId}`);
+      await axios.delete(`https://philjap-api.onrender.com/api/delete/${userId}/${projectId}`);
       console.log("Successfully Deleted the Project");
       
       navigate("/dashboard-admin");
