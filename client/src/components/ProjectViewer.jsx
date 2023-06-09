@@ -8,6 +8,7 @@ import ClientNavbar from './ClientNavbar';
 import { firestore } from '../firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import FloatingChatButton from './chat/FloatingChatButton';
+import Loader from '../components/Loader'
 
 const ProjectViewer = () => {
   const { projectId } = useParams();
@@ -22,12 +23,15 @@ const ProjectViewer = () => {
   const scrollStep = 400; // Number of pixels to scroll
   const navigate = useNavigate();
 
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Get the userId from the URL
         const userIdFromUrl = searchParams.get('userId');
-        setUserId(userIdFromUrl);
+        const userid = userIdFromUrl.replace(/\?.*/, '');
+        setUserId(userid);
 
         // Fetch the user's data from Firestore to determine if they are an admin
         const userDoc = await firestore.collection('users').doc(userIdFromUrl).get();
@@ -38,10 +42,10 @@ const ProjectViewer = () => {
 
         if (userIdFromUrl) {
           // Fetch the project images using the userId
-          const response = await axios.get(`https://philjap-api.onrender.com/api/projects/images/${projectId}/${userIdFromUrl}`);
+          const response = await axios.get(`http://localhost:3002/api/projects/images/${projectId}/${userIdFromUrl}`);
           setImages(response.data.images);
         }
-
+        console.log(`Project ID:: ${projectId}`)
         // Get project title from URL
         const projectTitleFromUrl = searchParams.get('projectTitle');
         if (projectTitleFromUrl) {
@@ -73,23 +77,54 @@ const ProjectViewer = () => {
 
   const handleDeleteProject = async () => {
     try {
-      // Delete the project document
-      const projectRef = firestore.collection('projects').doc(userId).collection('project').doc(projectId);
-      await projectRef.delete();
+      await axios.delete(`http://localhost:3002/api/delete/${userId}/${projectId}`);
       console.log("Successfully Deleted the Project");
       
-      // Redirect to a different page or perform any necessary action
-      navigate("/dashboard-admin")
-      alert("Project Deleted Successfully!")
+      navigate("/dashboard-admin");
+      alert("Project Deleted Successfully!");
     } catch (error) {
       console.error('Error deleting project:', error);
     }
   };
-  
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      enterFullscreen();
+    } else {
+      exitFullscreen();
+    }
+  };
+
+  const enterFullscreen = () => {
+    const element = document.documentElement;
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+    setIsFullscreen(true);
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+    setIsFullscreen(false);
+  };
 
   // Check if userIdFromUrl exists before rendering the component
   if (!userId) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
@@ -98,6 +133,12 @@ const ProjectViewer = () => {
       <div className="pt-[150px] flex flex-col justify-center items-center">
         <h1 className="text-xl font-bold text-white">{projectTitle}</h1>
         {selectedImage && <PanoramaViewer image={selectedImage} />}
+        <button
+          onClick={toggleFullscreen}
+          className="absolute top-0 right-0 m-4 bg-white text-gray-700 font-bold py-2 px-4 rounded"
+        >
+          {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+        </button>
       </div>
       <div className="flex flex-row relative justify-center items-center h-full w-3/4 px-2 pt-[50px] mx-auto">
         <button
@@ -128,7 +169,7 @@ const ProjectViewer = () => {
       
       {!isAdmin && (
         <button
-          onClick={handleDeleteProject}
+          onClick={() => handleDeleteProject()}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 m-4 rounded"
         >
           Delete Project
