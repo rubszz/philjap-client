@@ -62,10 +62,19 @@ const ClientNavbar = () => {
         <img src={logo} alt="Philjap Logo" className="w-[82px] ml-3"/>
       </a>
     </div>
-    <div className="flex flex-row gap-4 font-medium">  
-    <a href="/dashboard-user" className="self-center mx-auto">
-        <span className=' pt-4 font-medium text-white align-middle'>Hello {firstName} 👋</span>
-    </a>     
+    <div className="flex flex-row gap-4 font-medium text-white">
+      <a href="#missionvision" className="pt-5 font-medium mx-auto hover:text-violet-500">
+          MISSION & VISION
+      </a>
+      <a href="#aboutus" className="pt-5 font-medium mx-auto hover:text-violet-500">
+          ABOUT US
+      </a>
+      <a href="/services" className="pt-5 font-medium mx-auto hover:text-violet-500">
+          SERVICES
+      </a>
+      <a href="/dashboard-user" className="self-center mx-auto">
+          <span className=' pt-4 font-medium text-white align-middle'>Hello {firstName} 👋</span>
+      </a>     
       {user ? 
         ( <Menu logout={logout} /> ) : 
         ( null )

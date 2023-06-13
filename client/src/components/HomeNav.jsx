@@ -8,9 +8,6 @@ const HomeNav = () => {
             <img src={logo} alt="Philjap Logo" className="m-4"/>
         </a>
         <div className="flex flex-row justify-between gap-8">
-            <a href="/login" className="pt-8 font-medium mx-auto hover:text-violet-500">
-                LOGIN
-            </a>
             <a href="#missionvision" className="pt-8 font-medium mx-auto hover:text-violet-500">
                 MISSION & VISION
             </a>
@@ -19,6 +16,9 @@ const HomeNav = () => {
             </a>
             <a href="/services" className="pt-8 font-medium mx-auto hover:text-violet-500">
                 SERVICES
+            </a>
+            <a href="/login" className="pt-8 font-medium mx-auto hover:text-violet-500">
+                LOGIN
             </a>
         </div>
     </div>
