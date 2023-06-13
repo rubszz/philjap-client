@@ -17,7 +17,7 @@ const AboutUsComponent = () => {
 
   const serviceVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: .6 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.9, delay: .6 } },
   };
 
 
@@ -25,7 +25,7 @@ const AboutUsComponent = () => {
     <motion.div
       className="bg-dark-theme text-white pt-20 relative overflow-hidden"
       initial="hidden"
-      whileInView="visible"
+      animate="visible"
       variants={containerVariants}
       id="aboutus"
     >
