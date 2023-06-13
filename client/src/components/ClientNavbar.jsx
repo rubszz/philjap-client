@@ -61,17 +61,23 @@ const ClientNavbar = () => {
       <a className="" href="/dashboard-user">
         <img src={logo} alt="Philjap Logo" className="w-[82px] ml-3"/>
       </a>
+      
     </div>
     <div className="flex flex-row gap-4 font-medium text-white">
-      <a href="#missionvision" className="pt-5 font-medium mx-auto hover:text-violet-500">
-          MISSION & VISION
+      <a href="/dashboard-user" className="self-center font-medium mx-auto hover:text-violet-500 text-white">
+        EXPLORE
       </a>
-      <a href="#aboutus" className="pt-5 font-medium mx-auto hover:text-violet-500">
-          ABOUT US
-      </a>
-      <a href="/services" className="pt-5 font-medium mx-auto hover:text-violet-500">
+      <a href="/servicescom" className="self-center font-medium mx-auto hover:text-violet-500">
           SERVICES
       </a>
+      <a href="/missionvisioncom" className="self-center font-medium mx-auto hover:text-violet-500">
+          MISSION & VISION
+      </a>
+      <a href="/aboutuscom" className="self-center font-medium mx-auto hover:text-violet-500">
+          ABOUT US
+      </a>
+    </div>
+    <div className="flex flex-row">
       <a href="/dashboard-user" className="self-center mx-auto">
           <span className=' pt-4 font-medium text-white align-middle'>Hello {firstName} 👋</span>
       </a>     
@@ -79,7 +85,6 @@ const ClientNavbar = () => {
         ( <Menu logout={logout} /> ) : 
         ( null )
       }
-      
     </div>
   </div>
   )

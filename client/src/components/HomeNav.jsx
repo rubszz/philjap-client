@@ -1,7 +1,39 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import logo from '../assets/logo.png'
+import { auth } from '../firebase/auth'
 
 const HomeNav = () => {
+    const [user, setUser] = useState(null);
+    const [firstName, setFirstName] = useState('');
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+          setUser(user);
+          getFirstName(user);
+        });
+    
+        return () => unsubscribe();
+      }, []);
+    
+      const getFirstName = (user) => {
+        if (user) { 
+          user.getIdToken(true)
+            .then((idToken) => {
+              axios.get('https://philjap-api.onrender.com/user', {
+                headers: {
+                  Authorization: `Bearer ${idToken}`,
+                },
+              })
+              .then(res => {
+                setFirstName(res.data.firstName);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            });
+        }
+      }
+
   return (
     <div className="flex flex-row justify-between px-6">
         <a href="/">

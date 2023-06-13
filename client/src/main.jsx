@@ -16,6 +16,10 @@ import RegisterEngineer from './pages/RegisterEngineer'
 import ServicesPage from './pages/ServicesPage'
 
 import './index.css'
+import MissionVision from './pages/MissionVision';
+import MissionVisionComponent from "./components/MissionVisionComponent"
+import AboutUsComponent from './components/AboutUsComponent';
+import ServicesComponent from './components/ServicesComponent';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -37,6 +41,10 @@ root.render(
         <Route path="/projects/:projectId" element={<ProjectViewer />} />
         <Route path="/profile/:userId" element={<ClientProjectView />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/missionvision" element={<MissionVision />} />
+        <Route path="/missionvisioncom" element={<MissionVisionComponent />} />
+        <Route path="/servicescom" element={<ServicesComponent />} />
+        <Route path="/aboutuscom" element={<AboutUsComponent />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
