@@ -13,6 +13,7 @@ import ClientProjectView from './components/ClientProjectView';
 import ClientDashboardPage from './pages/ClientDashboardPage';
 import ProfileEdit from './pages/ProfileEdit';
 import RegisterEngineer from './pages/RegisterEngineer'
+import ServicesPage from './pages/ServicesPage'
 
 import './index.css'
 
@@ -35,6 +36,7 @@ root.render(
         <Route path="/add-engineer" element={<ProtectedRoute ><RegisterEngineer /></ProtectedRoute>}/>
         <Route path="/projects/:projectId" element={<ProjectViewer />} />
         <Route path="/profile/:userId" element={<ClientProjectView />} />
+        <Route path="/services" element={<ServicesPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

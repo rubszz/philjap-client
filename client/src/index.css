@@ -25,6 +25,53 @@ body {
   }
   
 
+  @keyframes move-shape {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-100px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .bg-shape {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #5a67d8;
+    border-radius: 50%;
+    opacity: 0.6;
+    z-index: -1;
+    animation: move-shape 10s infinite;
+  }
+  
+  .shape-1 {
+    top: -50px;
+    left: -50px;
+  }
+  
+  .shape-2 {
+    bottom: -50px;
+    right: -50px;
+  }
+  
+  .shape-3 {
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    animation-delay: 2s;
+  }
+  
+  .shape-4 {
+    top: calc(50% - 100px);
+    right: calc(50% - 100px);
+    animation-delay: 4s;
+  }
+  
+
+
 .inverted-icon {
     filter: invert(1);
 }
