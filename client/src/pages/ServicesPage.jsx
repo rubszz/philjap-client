@@ -8,10 +8,22 @@ const ServicesPage = () => {
     visible: { opacity: 1 },
   };
 
-  const itemVariants = {
+  const itemVariants1 = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay: 0.5}
+    transition: { duration: 0.8, delay: 0.6}
+  };
+
+  const itemVariants2 = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay: 0.7}
+  };
+
+  const itemVariants3 = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay: 0.9}
   };
 
   return (
@@ -27,7 +39,7 @@ const ServicesPage = () => {
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <motion.div
             className="bg-gradient-to-br from-blue-500 to-purple-500 px-6 py-8 rounded-lg"
-            variants={itemVariants}
+            variants={itemVariants1}
           >
             <h2 className="text-2xl font-bold mb-4">Renovation Services</h2>
             <ul className="list-disc list-inside">
@@ -39,7 +51,7 @@ const ServicesPage = () => {
           </motion.div>
           <motion.div
             className="bg-gradient-to-br from-pink-500 to-red-500 px-6 py-8 rounded-lg"
-            variants={itemVariants}
+            variants={itemVariants2}
           >
             <h2 className="text-2xl font-bold mb-4">Planning Services</h2>
             <ul className="list-disc list-inside">
@@ -51,7 +63,7 @@ const ServicesPage = () => {
           </motion.div>
           <motion.div
             className="bg-gradient-to-br from-yellow-500 to-green-500 px-6 py-8 rounded-lg"
-            variants={itemVariants}
+            variants={itemVariants3}
           >
             <h2 className="text-2xl font-bold mb-4">Building Services</h2>
             <ul className="list-disc list-inside">
@@ -63,7 +75,7 @@ const ServicesPage = () => {
           </motion.div>
           <motion.div
             className="bg-gradient-to-br from-purple-500 to-blue-500 px-6 py-8 rounded-lg"
-            variants={itemVariants}
+            variants={itemVariants1}
           >
             <h2 className="text-2xl font-bold mb-4">Structural Engineering</h2>
             <ul className="list-disc list-inside">
@@ -75,7 +87,7 @@ const ServicesPage = () => {
           </motion.div>
           <motion.div
             className="bg-gradient-to-br from-red-500 to-pink-500 px-6 py-8 rounded-lg"
-            variants={itemVariants}
+            variants={itemVariants2}
           >
             <h2 className="text-2xl font-bold mb-4">MEP Engineering</h2>
             <ul className="list-disc list-inside">
@@ -87,7 +99,7 @@ const ServicesPage = () => {
           </motion.div>
           <motion.div
             className="bg-gradient-to-br from-green-500 to-yellow-500 px-6 py-8 rounded-lg"
-            variants={itemVariants}
+            variants={itemVariants3}
           >
             <h2 className="text-2xl font-bold mb-4">Project Management</h2>
             <ul className="list-disc list-inside">
@@ -98,7 +110,7 @@ const ServicesPage = () => {
             </ul>
           </motion.div>
         </motion.div>
-        <motion.p className="mt-8" variants={itemVariants}>
+        <motion.p className="mt-8" variants={itemVariants3}>
           At Philjap Company, we pride ourselves on delivering customized solutions that align with our clients' vision, goals, and budget. Whether it's renovating existing structures, planning new projects, handling complex construction endeavors, or providing structural engineering and MEP services, our experienced team of engineers and industry experts are dedicated to providing exceptional service and results.
         </motion.p>
       </div>
