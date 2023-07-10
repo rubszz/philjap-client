@@ -16,11 +16,13 @@ const LoginPage = () => {
                 duration: "4"
             }}
             className="flex flex-col items-center justify-center pr-[14%]">
-            <img 
-            src={headmaster} 
-            alt="Streamline your reservations and elevate your professional profile with ease."
-            className="w-full -mt-30"
-            />
+            <a href="/">
+                <img 
+                src={headmaster} 
+                alt="Streamline your reservations and elevate your professional profile with ease."
+                className="w-full -mt-30"
+                />
+            </a>
             <LoginForm />
         </motion.div>
         <motion.div 
